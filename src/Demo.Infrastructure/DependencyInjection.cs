@@ -1,4 +1,5 @@
 using Demo.Application.Interfaces;
+using Demo.Domain.AggregatesModel.ProductAggregate;
 using Demo.Infrastructure.Data;
 using Demo.Infrastructure.Data.Interceptors;
 
@@ -17,7 +18,13 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            options.UseNpgsql(connectionString);
+
+            options.UseSnakeCaseNamingConvention();
+
+            options.UseNpgsql(connectionString, o =>
+            {
+                o.MapEnum<ProductStatus>();
+            });
         });
 
         services.AddScoped<ApplicationDbContextInitializer>();
