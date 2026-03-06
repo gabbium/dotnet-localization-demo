@@ -18,8 +18,8 @@ public class OpenApiVersioningDocumentTransformer(
         }
 
         document.Info.Version = apiDescription.ApiVersion.ToString();
-        document.Info.Title = "Demo HTTP API";
-        document.Info.Description = "The Demo HTTP API documentation.";
+        document.Info.Title = ".NET Localization Demo API";
+        document.Info.Description = "Sample ASP.NET Core API demonstrating localization with resource files and IStringLocalizer.";
 
         return Task.CompletedTask;
     }
