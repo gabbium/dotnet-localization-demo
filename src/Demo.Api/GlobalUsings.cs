@@ -1,0 +1,14 @@
+global using System.Text;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using System.Text.RegularExpressions;
+global using Ardalis.Result;
+global using Asp.Versioning;
+global using Asp.Versioning.ApiExplorer;
+global using Microsoft.AspNetCore.Diagnostics;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.ApplicationModels;
+global using Microsoft.AspNetCore.Mvc.ModelBinding;
+global using Microsoft.AspNetCore.OpenApi;
+global using Microsoft.OpenApi;
+global using Scalar.AspNetCore;
