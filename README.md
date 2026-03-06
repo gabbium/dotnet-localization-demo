@@ -1,7 +1,6 @@
-# .NET Globalization Demo
+# .NET Localization Demo
 
-A simple ASP.NET Core Web API demonstrating globalization and
-localization concepts in .NET.
+A simple ASP.NET Core Web API demonstrating localization in .NET.
 
 This project shows how to build culture-aware APIs using resource files
 and the ASP.NET Core localization infrastructure.
@@ -12,8 +11,7 @@ and the ASP.NET Core localization infrastructure.
 -   Localization using `IStringLocalizer`
 -   Resource files (`.resx`)
 -   Culture detection via `Accept-Language`
--   Culture-aware formatting (dates, numbers, currency)
--   Example validation and error messages
+-   Localized validation and error messages
 
 ## Technologies
 
@@ -26,7 +24,7 @@ and the ASP.NET Core localization infrastructure.
 
 Request with culture:
 
-    Accept-Language: pt-BR
+Accept-Language: pt-BR
 
 Example response:
 
@@ -39,7 +37,7 @@ Example response:
 
 Request with:
 
-    Accept-Language: en-US
+Accept-Language: en-US
 
 Response:
 
@@ -62,8 +60,8 @@ The API will be available at:
 
 ## Purpose
 
-This repository is a small demonstration of how globalization and
-localization can be implemented in ASP.NET Core APIs.
+This repository demonstrates how to implement localization in ASP.NET
+Core APIs using resource files and `IStringLocalizer`.
 
 ## License
 
