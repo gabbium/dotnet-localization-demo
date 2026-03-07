@@ -1,6 +1,6 @@
-using Demo.Application.Errors;
+using Demo.Domain.AggregatesModel.ProductAggregate;
 
-namespace Demo.Application.UseCases.Products.CreateProduct;
+namespace Demo.Application.UseCases.Products.Commands.CreateProduct;
 
 public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
 {

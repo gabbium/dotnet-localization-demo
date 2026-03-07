@@ -1,6 +1,6 @@
 using Demo.SharedKernel.Results;
 
-namespace Demo.Application.Errors;
+namespace Demo.SharedKernel.Pagination;
 
 public static class PaginationErrors
 {

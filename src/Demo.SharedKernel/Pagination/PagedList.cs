@@ -1,4 +1,4 @@
-namespace Demo.SharedKernel.Results;
+namespace Demo.SharedKernel.Pagination;
 
 /// <summary>
 /// Represents a paginated list of items.

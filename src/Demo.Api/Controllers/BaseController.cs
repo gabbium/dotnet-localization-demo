@@ -1,5 +1,5 @@
+using Demo.Api.Infrastructure.ProblemDetails;
 using Demo.Api.Resources;
-using Demo.Application.Errors;
 using Demo.SharedKernel.Results;
 
 namespace Demo.Api.Controllers;

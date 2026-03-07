@@ -1,6 +1,6 @@
-using Demo.Application.Errors;
+using Demo.SharedKernel.Pagination;
 
-namespace Demo.Application.UseCases.Products.ListProducts;
+namespace Demo.Application.UseCases.Products.Queries.ListProducts;
 
 public class ListProductsQueryValidator : AbstractValidator<ListProductsQuery>
 {

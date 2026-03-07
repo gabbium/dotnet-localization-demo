@@ -1,9 +1,8 @@
-using Demo.Api.Models;
+using Demo.Api.Contracts;
 using Demo.Api.Resources;
-using Demo.Application.Models;
-using Demo.Application.UseCases.Products.CreateProduct;
-using Demo.Application.UseCases.Products.ListProducts;
-using Demo.SharedKernel.Results;
+using Demo.Application.UseCases.Products.Commands.CreateProduct;
+using Demo.Application.UseCases.Products.Queries.ListProducts;
+using Demo.SharedKernel.Pagination;
 
 namespace Demo.Api.Controllers;
 

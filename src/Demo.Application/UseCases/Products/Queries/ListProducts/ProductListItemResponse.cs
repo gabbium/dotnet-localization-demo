@@ -1,6 +1,6 @@
 using Demo.Domain.AggregatesModel.ProductAggregate;
 
-namespace Demo.Application.Models;
+namespace Demo.Application.UseCases.Products.Queries.ListProducts;
 
 /// <summary>
 /// Represents a product item in a product list.

@@ -1,5 +1,3 @@
-using System.Text.Json.Nodes;
-
 namespace Demo.Api.Infrastructure.OpenApi;
 
 public class LocalizationHeaderTransformer : IOpenApiDocumentTransformer

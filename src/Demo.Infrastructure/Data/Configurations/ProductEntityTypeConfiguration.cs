@@ -1,6 +1,6 @@
 using Demo.Domain.AggregatesModel.ProductAggregate;
 
-namespace Demo.Infrastructure.Data.EntityConfigurations;
+namespace Demo.Infrastructure.Data.Configurations;
 
 public class ProductEntityTypeConfiguration : IEntityTypeConfiguration<Product>
 {

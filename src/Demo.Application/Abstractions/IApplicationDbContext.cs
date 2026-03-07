@@ -1,6 +1,6 @@
 using Demo.Domain.AggregatesModel.ProductAggregate;
 
-namespace Demo.Application.Interfaces;
+namespace Demo.Application.Abstractions;
 
 public interface IApplicationDbContext
 {

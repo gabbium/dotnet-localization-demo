@@ -1,6 +1,6 @@
 using Demo.SharedKernel.Results;
 
-namespace Demo.Application.Errors;
+namespace Demo.Domain.AggregatesModel.ProductAggregate;
 
 public static class ProductErrors
 {

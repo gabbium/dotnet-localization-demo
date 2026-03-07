@@ -1,4 +1,4 @@
-using Demo.Application.Interfaces;
+using Demo.Application.Abstractions;
 using Demo.Domain.AggregatesModel.ProductAggregate;
 using Demo.Infrastructure.Data;
 using Demo.Infrastructure.Data.Interceptors;

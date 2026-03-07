@@ -1,4 +1,4 @@
-namespace Demo.Api.Infrastructure.Controllers;
+namespace Demo.Api.Infrastructure.Conventions;
 
 public partial class KebabCaseParameterTransformer : IOutboundParameterTransformer
 {

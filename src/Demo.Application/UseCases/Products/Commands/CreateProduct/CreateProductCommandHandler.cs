@@ -1,9 +1,8 @@
-using Demo.Application.Interfaces;
-using Demo.Application.Models;
+using Demo.Application.Abstractions;
 using Demo.Domain.AggregatesModel.ProductAggregate;
 using Demo.SharedKernel.Results;
 
-namespace Demo.Application.UseCases.Products.CreateProduct;
+namespace Demo.Application.UseCases.Products.Commands.CreateProduct;
 
 public class CreateProductCommandHandler(IApplicationDbContext context)
     : ICommandHandler<CreateProductCommand, Result<ProductDetailsResponse>>

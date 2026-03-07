@@ -1,5 +1,5 @@
 using Demo.Application.Behaviors;
-using Demo.Application.UseCases.Products.ListProducts;
+using Demo.Application.UseCases.Products.Queries.ListProducts;
 
 namespace Demo.Application;
 

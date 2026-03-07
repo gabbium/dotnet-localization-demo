@@ -1,4 +1,4 @@
-using Demo.Api.Infrastructure.Controllers;
+using Demo.Api.Infrastructure.Conventions;
 
 namespace Demo.Api.Extensions;
 

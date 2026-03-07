@@ -1,6 +1,6 @@
-using Demo.Application.Interfaces;
+using Demo.Application.Abstractions;
 using Demo.Domain.AggregatesModel.ProductAggregate;
-using Demo.Infrastructure.Data.EntityConfigurations;
+using Demo.Infrastructure.Data.Configurations;
 
 namespace Demo.Infrastructure.Data;
 

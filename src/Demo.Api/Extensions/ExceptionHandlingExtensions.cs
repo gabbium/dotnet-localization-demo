@@ -1,4 +1,4 @@
-using Demo.Api.Infrastructure;
+using Demo.Api.Infrastructure.ExceptionHandling;
 
 namespace Demo.Api.Extensions;
 

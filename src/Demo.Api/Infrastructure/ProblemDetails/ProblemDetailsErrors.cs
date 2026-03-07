@@ -1,6 +1,6 @@
 using Demo.SharedKernel.Results;
 
-namespace Demo.Application.Errors;
+namespace Demo.Api.Infrastructure.ProblemDetails;
 
 public static class ProblemDetailsErrors
 {

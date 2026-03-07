@@ -1,8 +1,8 @@
-using Demo.Application.Interfaces;
-using Demo.Application.Models;
+using Demo.Application.Abstractions;
+using Demo.SharedKernel.Pagination;
 using Demo.SharedKernel.Results;
 
-namespace Demo.Application.UseCases.Products.ListProducts;
+namespace Demo.Application.UseCases.Products.Queries.ListProducts;
 
 public class ListProductsQueryHandler(IApplicationDbContext context)
     : IQueryHandler<ListProductsQuery, Result<PagedList<ProductListItemResponse>>>
