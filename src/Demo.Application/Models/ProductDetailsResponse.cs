@@ -2,29 +2,48 @@ using Demo.Domain.AggregatesModel.ProductAggregate;
 
 namespace Demo.Application.Models;
 
+/// <summary>
+/// Represents detailed information about a product.
+/// </summary>
 public record ProductDetailsResponse
 {
-    [Description("Unique identifier of the product.")]
+    /// <summary>
+    /// Unique identifier of the product.
+    /// </summary>
     public Guid Id { get; init; }
 
-    [Description("Name of the product.")]
+    /// <summary>
+    /// Name of the product.
+    /// </summary>
     public string Name { get; init; } = null!;
 
-    [Description("Optional detailed description of the product.")]
+    /// <summary>
+    /// Optional detailed description of the product.
+    /// </summary>
     public string? Description { get; init; }
 
-    [Description("Product price amount.")]
+    /// <summary>
+    /// Product price amount.
+    /// </summary>
     public decimal Amount { get; init; }
 
-    [Description("ISO 4217 currency code of the product price.")]
+    /// <summary>
+    /// ISO 4217 currency code of the product price.
+    /// </summary>
     public string Currency { get; init; } = null!;
 
-    [Description("Current lifecycle status of the product.")]
+    /// <summary>
+    /// Current lifecycle status of the product.
+    /// </summary>
     public ProductStatus Status { get; init; }
 
-    [Description("Date and time when the product was created (UTC).")]
+    /// <summary>
+    /// Date and time when the product was created (UTC).
+    /// </summary>
     public DateTimeOffset CreatedAt { get; init; }
 
-    [Description("Date and time when the product was last modified (UTC), if applicable.")]
+    /// <summary>
+    /// Date and time when the product was last modified (UTC), if applicable.
+    /// </summary>
     public DateTimeOffset? LastModifiedAt { get; init; }
 }

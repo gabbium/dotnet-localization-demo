@@ -14,6 +14,7 @@
     <Project Path="src/Demo.Domain/Demo.Domain.csproj" Id="1871234a-764e-4abc-b8ed-21645b45d8c1" />
     <Project Path="src/Demo.Infrastructure/Demo.Infrastructure.csproj" Id="097a76fe-31c6-4a10-85e4-092a4749298c" />
     <Project Path="src/Demo.ServiceDefaults/Demo.ServiceDefaults.csproj" />
+    <Project Path="src/Demo.SharedKernel/Demo.SharedKernel.csproj" Id="f76b2097-0f15-4ae4-8c4a-9f9b60ba54cb" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>

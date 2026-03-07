@@ -1,3 +1,5 @@
+using Demo.Application.Errors;
+
 namespace Demo.Application.UseCases.Products.CreateProduct;
 
 public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
@@ -6,16 +8,22 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
     {
         RuleFor(x => x.Name)
             .NotEmpty()
-            .MaximumLength(200);
+            .WithState(_ => ProductErrors.NameRequired())
+            .MaximumLength(200)
+            .WithState(_ => ProductErrors.NameTooLong(200));
 
         RuleFor(x => x.Description)
-            .MaximumLength(1000);
+            .MaximumLength(1000)
+            .WithState(_ => ProductErrors.DescriptionTooLong(1000));
 
         RuleFor(x => x.Amount)
-            .GreaterThan(0);
+            .GreaterThan(0)
+            .WithState(_ => ProductErrors.PriceMustBeGreaterThan(0));
 
         RuleFor(x => x.Currency)
             .NotEmpty()
-            .Length(3);
+                .WithState(_ => ProductErrors.CurrencyRequired())
+            .Length(3)
+                .WithState(_ => ProductErrors.CurrencyMustBeIsoCode());
     }
 }

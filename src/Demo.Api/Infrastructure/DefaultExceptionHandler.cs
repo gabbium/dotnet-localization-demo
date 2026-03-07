@@ -1,13 +1,21 @@
+using Demo.Api.Resources;
+using Demo.Application.Errors;
+using Demo.SharedKernel.Results;
+
 namespace Demo.Api.Infrastructure;
 
 public class DefaultExceptionHandler : IExceptionHandler
 {
     private readonly ILogger<DefaultExceptionHandler> _logger;
+    private readonly IStringLocalizer<SharedResource> _localizer;
+
     private readonly Dictionary<Type, Func<HttpContext, Exception, Task>> _exceptionHandlers;
 
-    public DefaultExceptionHandler(ILogger<DefaultExceptionHandler> logger)
+    public DefaultExceptionHandler(ILogger<DefaultExceptionHandler> logger, IStringLocalizer<SharedResource> localizer)
     {
         _logger = logger;
+        _localizer = localizer;
+
         _exceptionHandlers = new()
         {
             { typeof(FluentValidation.ValidationException), HandleValidationException },
@@ -32,8 +40,8 @@ public class DefaultExceptionHandler : IExceptionHandler
         _logger.LogError(exception, "An unhandled exception has occurred while executing the request");
 
         var problem = Results.Problem(
-            title: "Server failure",
-            detail: "An unexpected error occurred",
+            title: _localizer[ProblemDetailsErrors.ServerFailureTitle().Code],
+            detail: _localizer[ProblemDetailsErrors.ServerFailureDetail().Code],
             statusCode: StatusCodes.Status500InternalServerError,
             type: "https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.1");
 
@@ -42,7 +50,7 @@ public class DefaultExceptionHandler : IExceptionHandler
         return true;
     }
 
-    private static async Task HandleValidationException(
+    private async Task HandleValidationException(
         HttpContext httpContext,
         Exception ex)
     {
@@ -51,12 +59,20 @@ public class DefaultExceptionHandler : IExceptionHandler
         var errors = exception.Errors
             .GroupBy(e => e.PropertyName)
             .ToDictionary(
-                group => group.Key,
-                group => group.Select(e => e.ErrorMessage).ToArray());
+                g => g.Key,
+                g => g.Select(e =>
+                {
+                    if (e.CustomState is Error error)
+                    {
+                        return _localizer[error.Code, error.Arguments].Value;
+                    }
+
+                    return _localizer[e.ErrorCode].Value;
+                }).ToArray());
 
         var problem = Results.ValidationProblem(
-            title: "Bad Request",
-            detail: "One or more validation errors occurred.",
+            title: _localizer[ProblemDetailsErrors.ValidationTitle().Code],
+            detail: _localizer[ProblemDetailsErrors.ValidationDetail().Code],
             errors: errors,
             statusCode: StatusCodes.Status400BadRequest,
             type: "https://tools.ietf.org/html/rfc9110#section-15.5.1");

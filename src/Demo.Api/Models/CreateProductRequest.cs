@@ -1,23 +1,31 @@
 namespace Demo.Api.Models;
 
-public record CreateProductRequest
+/// <summary>
+/// Request used to create a new product.
+/// </summary>
+public sealed record CreateProductRequest
 {
-    [Required(ErrorMessage = "Product name is required")]
-    [MaxLength(200, ErrorMessage = "Product name cannot exceed 200 characters")]
-    [Description("Name of the product.")]
+    /// <summary>
+    /// Name of the product.
+    /// Maximum length: 200 characters.
+    /// </summary>
     public string Name { get; init; } = string.Empty;
 
-    [MaxLength(1000, ErrorMessage = "Product description cannot exceed 1000 characters")]
-    [Description("Optional description providing additional details about the product.")]
+    /// <summary>
+    /// Optional description providing additional details about the product.
+    /// Maximum length: 1000 characters.
+    /// </summary>
     public string? Description { get; init; }
 
-    [Required(ErrorMessage = "Price amount is required")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Price amount must be greater than zero")]
-    [Description("Product price amount.")]
+    /// <summary>
+    /// Product price amount.
+    /// Must be greater than zero.
+    /// </summary>
     public decimal Amount { get; init; }
 
-    [Required(ErrorMessage = "Currency is required")]
-    [StringLength(3, MinimumLength = 3, ErrorMessage = "Currency must be a valid 3-letter ISO 4217 code")]
-    [Description("ISO 4217 currency code for the product price (e.g., USD, BRL, EUR).")]
+    /// <summary>
+    /// ISO 4217 currency code for the product price (e.g., USD, BRL, EUR).
+    /// Must contain exactly 3 characters.
+    /// </summary>
     public string Currency { get; init; } = string.Empty;
 }

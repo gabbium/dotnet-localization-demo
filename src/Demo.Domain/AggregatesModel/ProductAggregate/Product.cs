@@ -1,4 +1,4 @@
-using Demo.Domain.SeedWork;
+using Demo.SharedKernel.SeedWork;
 
 namespace Demo.Domain.AggregatesModel.ProductAggregate;
 

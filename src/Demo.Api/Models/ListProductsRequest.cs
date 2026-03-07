@@ -1,16 +1,21 @@
 namespace Demo.Api.Models;
 
+/// <summary>
+/// Request parameters for retrieving a paginated list of products.
+/// </summary>
 public record ListProductsRequest
 {
-    [Required]
-    [Range(1, int.MaxValue)]
-    [DefaultValue(1)]
-    [Description("Current page number (1-based).")]
-    public int PageNumber { get; init; }
+    /// <summary>
+    /// Current page number (1-based).
+    /// Default value: 1.
+    /// Minimum value: 1.
+    /// </summary>
+    public int PageNumber { get; init; } = 1;
 
-    [Required]
-    [Range(1, 100)]
-    [DefaultValue(20)]
-    [Description("Number of items per page.")]
-    public int PageSize { get; init; }
+    /// <summary>
+    /// Number of items per page.
+    /// Default value: 20.
+    /// Allowed range: 1 to 100.
+    /// </summary>
+    public int PageSize { get; init; } = 20;
 }

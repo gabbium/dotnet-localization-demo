@@ -6,6 +6,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddRequestLocalization();
         services.AddApiVersioningAndExplorer();
         services.AddOpenApiWithTransformers("v1");
         services.AddApiControllers();
@@ -17,6 +18,7 @@ public static class DependencyInjection
 
     public static WebApplication UseApiServices(this WebApplication app)
     {
+        app.UseRequestLocalizationMiddleware();
         app.UseExceptionHandling();
         app.UseRouting();
         app.UseSpaCorsPolicy();

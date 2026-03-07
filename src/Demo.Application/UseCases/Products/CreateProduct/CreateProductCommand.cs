@@ -1,4 +1,5 @@
 using Demo.Application.Models;
+using Demo.SharedKernel.Results;
 
 namespace Demo.Application.UseCases.Products.CreateProduct;
 

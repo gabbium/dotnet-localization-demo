@@ -1,12 +1,13 @@
 using Demo.Application.Interfaces;
 using Demo.Application.Models;
+using Demo.SharedKernel.Results;
 
 namespace Demo.Application.UseCases.Products.ListProducts;
 
 public class ListProductsQueryHandler(IApplicationDbContext context)
-    : IQueryHandler<ListProductsQuery, Result<PaginatedList<ProductListItemResponse>>>
+    : IQueryHandler<ListProductsQuery, Result<PagedList<ProductListItemResponse>>>
 {
-    public async ValueTask<Result<PaginatedList<ProductListItemResponse>>> Handle(
+    public async ValueTask<Result<PagedList<ProductListItemResponse>>> Handle(
         ListProductsQuery query,
         CancellationToken cancellationToken)
     {
@@ -29,7 +30,7 @@ public class ListProductsQueryHandler(IApplicationDbContext context)
             })
             .ToListAsync(cancellationToken);
 
-        return new PaginatedList<ProductListItemResponse>(
+        return new PagedList<ProductListItemResponse>(
             items,
             totalItems,
             query.PageNumber,

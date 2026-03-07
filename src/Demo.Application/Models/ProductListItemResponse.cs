@@ -2,20 +2,33 @@ using Demo.Domain.AggregatesModel.ProductAggregate;
 
 namespace Demo.Application.Models;
 
+/// <summary>
+/// Represents a product item in a product list.
+/// </summary>
 public record ProductListItemResponse
 {
-    [Description("Unique identifier of the product.")]
+    /// <summary>
+    /// Unique identifier of the product.
+    /// </summary>
     public Guid Id { get; init; }
 
-    [Description("Name of the product.")]
+    /// <summary>
+    /// Name of the product.
+    /// </summary>
     public string Name { get; init; } = null!;
 
-    [Description("Product price amount.")]
+    /// <summary>
+    /// Product price amount.
+    /// </summary>
     public decimal Amount { get; init; }
 
-    [Description("ISO 4217 currency code of the product price.")]
+    /// <summary>
+    /// ISO 4217 currency code of the product price.
+    /// </summary>
     public string Currency { get; init; } = null!;
 
-    [Description("Current lifecycle status of the product.")]
+    /// <summary>
+    /// Current lifecycle status of the product.
+    /// </summary>
     public ProductStatus Status { get; init; }
 }

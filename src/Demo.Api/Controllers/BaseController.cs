@@ -1,11 +1,15 @@
+using Demo.Api.Resources;
+using Demo.Application.Errors;
+using Demo.SharedKernel.Results;
+
 namespace Demo.Api.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public abstract class BaseController : ControllerBase
+public abstract class BaseController(IStringLocalizer<SharedResource> localizer) : ControllerBase
 {
-    protected IActionResult ToActionResult(Ardalis.Result.IResult result)
+    protected IActionResult ToActionResult(SharedKernel.Results.IResult result)
     {
         return result.Status switch
         {
@@ -24,114 +28,105 @@ public abstract class BaseController : ControllerBase
         };
     }
 
-    private IActionResult Ok(Ardalis.Result.IResult result)
+    private IActionResult Ok(SharedKernel.Results.IResult result)
     {
         return result is Result
             ? base.Ok()
             : base.Ok(result.GetValue());
     }
 
-    private CreatedResult Created(Ardalis.Result.IResult result)
+    private CreatedResult Created(SharedKernel.Results.IResult result)
     {
         return base.Created(string.Empty, result.GetValue());
     }
 
-    private NoContentResult NoContent(Ardalis.Result.IResult result)
+    private NoContentResult NoContent(SharedKernel.Results.IResult result)
     {
         return base.NoContent();
     }
 
-    private ActionResult Invalid(Ardalis.Result.IResult result)
-    {
-        if (result.ValidationErrors == null || !result.ValidationErrors.Any())
-        {
-            return BadRequest(BuildErrorDetails(result));
-        }
-
-        var dict = new ModelStateDictionary();
-
-        foreach (var e in result.ValidationErrors)
-        {
-            var key = e.Identifier ?? string.Empty;
-            dict.AddModelError(key, e.ErrorMessage);
-        }
-
-        return ValidationProblem(dict);
-    }
-
-    private ObjectResult Unauthorized(Ardalis.Result.IResult result)
+    private ObjectResult Invalid(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Unauthorized",
+            title: localizer[ProblemDetailsErrors.BadRequestTitle().Code],
+            detail: BuildErrorDetails(result),
+            statusCode: StatusCodes.Status400BadRequest);
+    }
+
+    private ObjectResult Unauthorized(SharedKernel.Results.IResult result)
+    {
+        return Problem(
+            title: localizer[ProblemDetailsErrors.UnauthorizedTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status401Unauthorized);
     }
 
-    private ObjectResult Forbidden(Ardalis.Result.IResult result)
+    private ObjectResult Forbidden(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Forbidden",
+            title: localizer[ProblemDetailsErrors.ForbiddenTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status403Forbidden);
     }
 
-    private ObjectResult NotFound(Ardalis.Result.IResult result)
+    private ObjectResult NotFound(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Not Found",
+            title: localizer[ProblemDetailsErrors.NotFoundTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status404NotFound);
     }
 
-    private ObjectResult Conflict(Ardalis.Result.IResult result)
+    private ObjectResult Conflict(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Conflict",
+            title: localizer[ProblemDetailsErrors.ConflictTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status409Conflict);
     }
 
-    private ObjectResult Unprocessable(Ardalis.Result.IResult result)
+    private ObjectResult Unprocessable(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Unprocessable Entity",
+            title: localizer[ProblemDetailsErrors.UnprocessableTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status422UnprocessableEntity);
     }
 
-    private ObjectResult CriticalError(Ardalis.Result.IResult result)
+    private ObjectResult CriticalError(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Server Failure",
+            title: localizer[ProblemDetailsErrors.ServerFailureTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status500InternalServerError);
     }
 
-    private ObjectResult Unavailable(Ardalis.Result.IResult result)
+    private ObjectResult Unavailable(SharedKernel.Results.IResult result)
     {
         return Problem(
-            title: "Service Unavailable",
+            title: localizer[ProblemDetailsErrors.ServiceUnavailableTitle().Code],
             detail: BuildErrorDetails(result),
             statusCode: StatusCodes.Status503ServiceUnavailable);
     }
 
-    private static string BuildErrorDetails(Ardalis.Result.IResult result)
+    private string BuildErrorDetails(SharedKernel.Results.IResult result)
     {
         if (result.Errors == null || !result.Errors.Any())
         {
-            return "An unexpected error occurred.";
+            return localizer[ProblemDetailsErrors.ServerFailureDetail().Code];
         }
 
-        if (result.Errors.Count() == 1)
+        if (result.Errors.Count == 1)
         {
-            return result.Errors.First();
+            var error = result.Errors[0];
+            return localizer[error.Code, error.Arguments];
         }
 
-        var sb = new StringBuilder("Errors:");
+        var sb = new StringBuilder();
 
         foreach (var error in result.Errors)
         {
-            sb.AppendLine().Append("* ").Append(error);
+            sb.AppendLine().Append("* ").Append(localizer[error.Code, error.Arguments]);
         }
 
         return sb.ToString();

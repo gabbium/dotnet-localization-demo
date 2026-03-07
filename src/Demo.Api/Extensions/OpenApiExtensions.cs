@@ -15,6 +15,7 @@ public static class OpenApiExtensions
                 options =>
                 {
                     options.AddDocumentTransformer<OpenApiVersioningDocumentTransformer>();
+                    options.AddDocumentTransformer<LocalizationHeaderTransformer>();
                     options.AddDocumentTransformer((document, context, cancellationToken) =>
                     {
                         document.Servers = [];

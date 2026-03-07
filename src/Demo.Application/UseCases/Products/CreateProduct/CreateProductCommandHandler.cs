@@ -1,6 +1,7 @@
 using Demo.Application.Interfaces;
 using Demo.Application.Models;
 using Demo.Domain.AggregatesModel.ProductAggregate;
+using Demo.SharedKernel.Results;
 
 namespace Demo.Application.UseCases.Products.CreateProduct;
 

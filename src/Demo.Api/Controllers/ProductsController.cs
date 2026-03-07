@@ -3,6 +3,7 @@ using Demo.Api.Resources;
 using Demo.Application.Models;
 using Demo.Application.UseCases.Products.CreateProduct;
 using Demo.Application.UseCases.Products.ListProducts;
+using Demo.SharedKernel.Results;
 
 namespace Demo.Api.Controllers;
 
@@ -15,7 +16,7 @@ public class ProductsController(IMediator mediator, IStringLocalizer<SharedResou
     /// Returns a paginated list of products based on the provided paging parameters.
     /// </remarks>
     [HttpGet]
-    [ProducesResponseType(typeof(PaginatedList<ProductListItemResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedList<ProductListItemResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ListProducts([FromQuery] ListProductsRequest request, CancellationToken cancellationToken)
     {
@@ -39,6 +40,8 @@ public class ProductsController(IMediator mediator, IStringLocalizer<SharedResou
         [FromBody] CreateProductRequest request,
         CancellationToken cancellationToken)
     {
+        var teste = CultureInfo.CurrentCulture;
+
         var command = new CreateProductCommand(
             request.Name,
             request.Description,

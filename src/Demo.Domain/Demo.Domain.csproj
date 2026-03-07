@@ -4,4 +4,8 @@
     <PackageReference Include="Mediator.Abstractions" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.SharedKernel\Demo.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-namespace Demo.Domain.SeedWork;
+namespace Demo.SharedKernel.SeedWork;
 
 public abstract class Entity
 {

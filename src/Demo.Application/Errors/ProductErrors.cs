@@ -1,0 +1,33 @@
+using Demo.SharedKernel.Results;
+
+namespace Demo.Application.Errors;
+
+public static class ProductErrors
+{
+    public static Error NotFound(Guid id) =>
+        new("Product.NotFound", id);
+
+    public static Error NameRequired() =>
+        new("Product.Name.Required");
+
+    public static Error NameTooLong(int maxLength) =>
+        new("Product.Name.MaxLengthExceeded", maxLength);
+
+    public static Error DescriptionTooLong(int maxLength) =>
+        new("Product.Description.MaxLengthExceeded", maxLength);
+
+    public static Error PriceMustBeGreaterThan(decimal min) =>
+        new("Product.Price.MustBeGreaterThan", min);
+
+    public static Error CurrencyRequired() =>
+        new("Product.Currency.Required");
+
+    public static Error CurrencyMustBeIsoCode() =>
+        new("Product.Currency.MustBeIsoCode");
+
+    public static Error CurrencyNotSupported(string currency) =>
+        new("Product.Currency.NotSupported", currency);
+
+    public static Error CannotModifyInactiveProduct(Guid id) =>
+        new("Product.Modification.NotAllowedForInactive", id);
+}
