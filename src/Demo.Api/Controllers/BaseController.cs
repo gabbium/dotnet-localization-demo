@@ -37,7 +37,18 @@ public abstract class BaseController(IStringLocalizer<SharedResource> localizer)
 
     private CreatedResult Created(SharedKernel.Results.IResult result)
     {
-        return base.Created(string.Empty, result.GetValue());
+        if (string.IsNullOrEmpty(result.Location))
+        {
+            return base.Created((string?)null, result.GetValue());
+        }
+
+        var httpRequest = HttpContext.Request;
+        var locationUri = new UriBuilder(httpRequest.Scheme,
+            httpRequest.Host.Host,
+            httpRequest.Host.Port ?? -1,
+            result.Location).Uri.AbsoluteUri;
+
+        return base.Created(locationUri, result.GetValue());
     }
 
     private NoContentResult NoContent(SharedKernel.Results.IResult result)

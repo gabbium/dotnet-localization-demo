@@ -1,6 +1,6 @@
 using Demo.Domain.AggregatesModel.ProductAggregate;
 
-namespace Demo.Application.UseCases.Products.Commands.CreateProduct;
+namespace Demo.Application.Models;
 
 /// <summary>
 /// Represents detailed information about a product.

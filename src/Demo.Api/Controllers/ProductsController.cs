@@ -1,6 +1,8 @@
-using Demo.Api.Contracts;
+using Demo.Api.Models;
 using Demo.Api.Resources;
+using Demo.Application.Models;
 using Demo.Application.UseCases.Products.Commands.CreateProduct;
+using Demo.Application.UseCases.Products.Queries.GetProductById;
 using Demo.Application.UseCases.Products.Queries.ListProducts;
 using Demo.SharedKernel.Pagination;
 
@@ -27,20 +29,37 @@ public class ProductsController(IMediator mediator, IStringLocalizer<SharedResou
     }
 
     /// <summary>
+    /// Retrieve product by identifier
+    /// </summary>
+    /// <remarks>
+    /// Returns the product details for the specified unique identifier.
+    /// </remarks>
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(ProductDetailsResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetProductById(Guid id, CancellationToken cancellationToken)
+    {
+        var query = new GetProductByIdQuery(id);
+
+        var result = await mediator.Send(query, cancellationToken);
+
+        return ToActionResult(result);
+    }
+
+    /// <summary>
     /// Create a new product
     /// </summary>
     /// <remarks>
     /// Creates a new product in draft status with the provided name, description, and price.
     /// </remarks>
     [HttpPost]
-    [ProducesResponseType(typeof(ProductDetailsResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProductDetailsResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateProduct(
         [FromBody] CreateProductRequest request,
         CancellationToken cancellationToken)
     {
-        var teste = CultureInfo.CurrentCulture;
-
         var command = new CreateProductCommand(
             request.Name,
             request.Description,

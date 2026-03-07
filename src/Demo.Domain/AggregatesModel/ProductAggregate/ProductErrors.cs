@@ -7,6 +7,9 @@ public static class ProductErrors
     public static Error NotFound(Guid id) =>
         new("Product.NotFound", id);
 
+    public static Error IdRequired() =>
+        new("Product.Id.Required");
+
     public static Error NameRequired() =>
         new("Product.Name.Required");
 

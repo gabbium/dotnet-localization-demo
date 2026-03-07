@@ -15,6 +15,11 @@ public class Result : Result<Result>
         return new();
     }
 
+    public static Result<T> Created<T>(T value, string location)
+    {
+        return Result<T>.Created(value, location);
+    }
+
     public new static Result Error(params Error[] errors)
     {
         return new(ResultStatus.Error)

@@ -1,4 +1,5 @@
 using Demo.Application.Abstractions;
+using Demo.Application.Models;
 using Demo.Domain.AggregatesModel.ProductAggregate;
 using Demo.SharedKernel.Results;
 
@@ -20,7 +21,7 @@ public class CreateProductCommandHandler(IApplicationDbContext context)
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return new ProductDetailsResponse()
+        var response = new ProductDetailsResponse()
         {
             Id = product.Id,
             Name = product.Name,
@@ -31,5 +32,8 @@ public class CreateProductCommandHandler(IApplicationDbContext context)
             CreatedAt = product.CreatedAt,
             LastModifiedAt = product.LastModifiedAt
         };
+
+        return Result.Created(response, $"/api/v1/products/{product.Id}"); 
     }
 }
+

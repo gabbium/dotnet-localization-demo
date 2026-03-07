@@ -1,4 +1,4 @@
-namespace Demo.Api.Contracts;
+namespace Demo.Api.Models;
 
 /// <summary>
 /// Request used to create a new product.

@@ -183,4 +183,7 @@
   <data name="Pagination.PageSize.MustBeBetween" xml:space="preserve">
     <value>El tamaño de página debe estar entre {0} y {1}.</value>
   </data>
+  <data name="Product.Id.Required" xml:space="preserve">
+    <value>El ID del producto es obligatorio.</value>
+  </data>
 </root>

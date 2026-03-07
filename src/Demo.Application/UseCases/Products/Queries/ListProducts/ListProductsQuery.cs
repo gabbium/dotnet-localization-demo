@@ -1,3 +1,4 @@
+using Demo.Application.Models;
 using Demo.SharedKernel.Pagination;
 using Demo.SharedKernel.Results;
 

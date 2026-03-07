@@ -1,4 +1,4 @@
-namespace Demo.Api.Contracts;
+namespace Demo.Api.Models;
 
 /// <summary>
 /// Request parameters for retrieving a paginated list of products.
