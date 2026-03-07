@@ -1,4 +1,5 @@
 using Demo.Application.Behaviors;
+using Demo.Application.UseCases.Products.ListProducts;
 
 namespace Demo.Application;
 
@@ -11,7 +12,7 @@ public static class DependencyInjection
             options.ServiceLifetime = ServiceLifetime.Scoped;
             options.Assemblies =
             [
-                typeof(IApplicationMarker).Assembly
+                typeof(ListProductsQuery).Assembly
             ];
             options.PipelineBehaviors =
             [
@@ -20,7 +21,7 @@ public static class DependencyInjection
             ];
         });
 
-        services.AddValidatorsFromAssemblyContaining<IApplicationMarker>();
+        services.AddValidatorsFromAssemblyContaining<ListProductsQuery>();
 
         return services;
     }

@@ -1,3 +1,5 @@
+global using System.ComponentModel;
+global using System.ComponentModel.DataAnnotations;
 global using System.Text;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
@@ -5,6 +7,7 @@ global using System.Text.RegularExpressions;
 global using Ardalis.Result;
 global using Asp.Versioning;
 global using Asp.Versioning.ApiExplorer;
+global using Mediator;
 global using Microsoft.AspNetCore.Diagnostics;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Mvc.ApplicationModels;
