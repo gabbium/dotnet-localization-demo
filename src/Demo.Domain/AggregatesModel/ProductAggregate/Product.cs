@@ -36,8 +36,7 @@ public class Product : AuditableEntity, IAggregateRoot
     {
         if (Status == ProductStatus.Discontinued)
         {
-            throw new DomainException(
-                ProductErrors.ModificationNotAllowedForDiscontinued(Id));
+            throw new DomainException(ProductErrors.ModificationNotAllowedForDiscontinued(Id));
         }
 
         Price = price;
