@@ -15,7 +15,7 @@ public abstract class BaseController(IStringLocalizer<SharedResource> localizer)
         {
             ResultStatus.Ok => Ok(result),
             ResultStatus.Created => Created(result),
-            ResultStatus.NoContent => NoContent(result),
+            ResultStatus.NoContent => NoContent(),
             ResultStatus.Invalid => Invalid(result),
             ResultStatus.Unauthorized => Unauthorized(result),
             ResultStatus.Forbidden => Forbidden(result),
@@ -49,11 +49,6 @@ public abstract class BaseController(IStringLocalizer<SharedResource> localizer)
             result.Location).Uri.AbsoluteUri;
 
         return base.Created(locationUri, result.GetValue());
-    }
-
-    private NoContentResult NoContent(SharedKernel.Results.IResult result)
-    {
-        return base.NoContent();
     }
 
     private ObjectResult Invalid(SharedKernel.Results.IResult result)

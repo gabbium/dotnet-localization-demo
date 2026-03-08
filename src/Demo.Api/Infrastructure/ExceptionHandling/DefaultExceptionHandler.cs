@@ -1,5 +1,6 @@
 using Demo.Api.Infrastructure.ProblemDetails;
 using Demo.Api.Resources;
+using Demo.SharedKernel.Exceptions;
 using Demo.SharedKernel.Results;
 
 namespace Demo.Api.Infrastructure.ExceptionHandling;
@@ -19,6 +20,7 @@ public class DefaultExceptionHandler : IExceptionHandler
         _exceptionHandlers = new()
         {
             { typeof(FluentValidation.ValidationException), HandleValidationException },
+            { typeof(DomainException), HandleDomainException },
         };
     }
 
@@ -43,7 +45,7 @@ public class DefaultExceptionHandler : IExceptionHandler
             title: _localizer[ProblemDetailsErrors.ServerFailureTitle().Code],
             detail: _localizer[ProblemDetailsErrors.ServerFailureDetail().Code],
             statusCode: StatusCodes.Status500InternalServerError,
-            type: "https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.1");
+            type: "https://www.rfc-editor.org/rfc/rfc9110#section-15.6.1");
 
         await problem.ExecuteAsync(httpContext);
 
@@ -75,7 +77,22 @@ public class DefaultExceptionHandler : IExceptionHandler
             detail: _localizer[ProblemDetailsErrors.ValidationDetail().Code],
             errors: errors,
             statusCode: StatusCodes.Status400BadRequest,
-            type: "https://tools.ietf.org/html/rfc9110#section-15.5.1");
+            type: "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.1");
+
+        await problem.ExecuteAsync(httpContext);
+    }
+
+    private async Task HandleDomainException(
+        HttpContext httpContext,
+        Exception ex)
+    {
+        var exception = (DomainException)ex;
+
+        var problem = Results.Problem(
+            title: _localizer[ProblemDetailsErrors.UnprocessableTitle().Code],
+            detail: _localizer[exception.Error.Code, exception.Error.Arguments],
+            statusCode: StatusCodes.Status422UnprocessableEntity,
+            type: "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.21");
 
         await problem.ExecuteAsync(httpContext);
     }

@@ -138,9 +138,6 @@
   <data name="Product.Currency.MustBeIsoCode" xml:space="preserve">
     <value>A moeda deve ser um código ISO 4217 válido.</value>
   </data>
-  <data name="Product.Currency.NotSupported" xml:space="preserve">
-    <value>A moeda '{0}' não é suportada.</value>
-  </data>
   <data name="Product.Modification.NotAllowedForInactive" xml:space="preserve">
     <value>O produto '{0}' não pode ser modificado porque está inativo.</value>
   </data>
@@ -185,5 +182,8 @@
   </data>
   <data name="Product.Id.Required" xml:space="preserve">
     <value>O ID do produto é obrigatório.</value>
+  </data>
+  <data name="Product.Activation.NotAllowedForDiscontinued" xml:space="preserve">
+    <value>O produto '{0}' não pode ser ativado porque está descontinuado.</value>
   </data>
 </root>

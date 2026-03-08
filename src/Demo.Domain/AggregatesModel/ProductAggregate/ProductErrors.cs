@@ -28,9 +28,6 @@ public static class ProductErrors
     public static Error CurrencyMustBeIsoCode() =>
         new("Product.Currency.MustBeIsoCode");
 
-    public static Error CurrencyNotSupported(string currency) =>
-        new("Product.Currency.NotSupported", currency);
-
-    public static Error CannotModifyInactiveProduct(Guid id) =>
-        new("Product.Modification.NotAllowedForInactive", id);
+    public static Error ActivationNotAllowedForDiscontinued(Guid id) =>
+        new("Product.Activation.NotAllowedForDiscontinued", id);
 }
