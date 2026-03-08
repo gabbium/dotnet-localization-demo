@@ -16,7 +16,7 @@ public class DeleteProductCommandHandler(IApplicationDbContext context)
 
         if (product == null)
         {
-            return Result.NotFound(ProductErrors.NotFound(command.ProductId));
+            return Result.NoContent();
         }
 
         if (product.Status != ProductStatus.Draft)
