@@ -2,6 +2,7 @@ using Demo.Api.Models;
 using Demo.Api.Resources;
 using Demo.Application.Models;
 using Demo.Application.UseCases.Products.Commands.ActivateProduct;
+using Demo.Application.UseCases.Products.Commands.ChangeProductPrice;
 using Demo.Application.UseCases.Products.Commands.CreateProduct;
 using Demo.Application.UseCases.Products.Commands.DeleteProduct;
 using Demo.Application.UseCases.Products.Commands.DiscontinueProduct;
@@ -100,6 +101,31 @@ public class ProductsController(
             id,
             request.Name,
             request.Description);
+
+        var result = await mediator.Send(command, cancellationToken);
+
+        return ToActionResult(result);
+    }
+
+    /// <summary>
+    /// Change product price
+    /// </summary>
+    /// <remarks>
+    /// Updates the price of the specified product.
+    /// </remarks>
+    [HttpPut("{id:guid}/price")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ChangeProductPrice(
+        Guid id,
+        [FromBody] ChangeProductPriceRequest request,
+        CancellationToken cancellationToken)
+    {
+        var command = new ChangeProductPriceCommand(
+            id,
+            request.Amount,
+            request.Currency);
 
         var result = await mediator.Send(command, cancellationToken);
 
