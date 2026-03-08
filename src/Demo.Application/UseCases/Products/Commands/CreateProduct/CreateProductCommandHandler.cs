@@ -8,7 +8,9 @@ namespace Demo.Application.UseCases.Products.Commands.CreateProduct;
 public class CreateProductCommandHandler(IApplicationDbContext context)
     : ICommandHandler<CreateProductCommand, Result<ProductDetailsResponse>>
 {
-    public async ValueTask<Result<ProductDetailsResponse>> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+    public async ValueTask<Result<ProductDetailsResponse>> Handle(
+        CreateProductCommand command,
+        CancellationToken cancellationToken)
     {
         var price = new Money(command.Amount, command.Currency);
 

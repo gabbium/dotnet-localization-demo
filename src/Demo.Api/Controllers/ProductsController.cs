@@ -5,6 +5,7 @@ using Demo.Application.UseCases.Products.Commands.ActivateProduct;
 using Demo.Application.UseCases.Products.Commands.CreateProduct;
 using Demo.Application.UseCases.Products.Commands.DeleteProduct;
 using Demo.Application.UseCases.Products.Commands.DiscontinueProduct;
+using Demo.Application.UseCases.Products.Commands.UpdateProductDetails;
 using Demo.Application.UseCases.Products.Queries.GetProductById;
 using Demo.Application.UseCases.Products.Queries.ListProducts;
 using Demo.SharedKernel.Pagination;
@@ -74,6 +75,31 @@ public class ProductsController(
             request.Description,
             request.Amount,
             request.Currency);
+
+        var result = await mediator.Send(command, cancellationToken);
+
+        return ToActionResult(result);
+    }
+
+    /// <summary>
+    /// Update product details
+    /// </summary>
+    /// <remarks>
+    /// Updates the name and description of the specified product.
+    /// </remarks>
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateProduct(
+        Guid id,
+        [FromBody] UpdateProductRequest request,
+        CancellationToken cancellationToken)
+    {
+        var command = new UpdateProductDetailsCommand(
+            id,
+            request.Name,
+            request.Description);
 
         var result = await mediator.Send(command, cancellationToken);
 

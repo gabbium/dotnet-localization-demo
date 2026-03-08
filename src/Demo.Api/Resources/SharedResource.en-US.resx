@@ -192,4 +192,7 @@
   <data name="Product.Delete.NotAllowedForNonDraft" xml:space="preserve">
     <value>Product '{0}' cannot be deleted because it is not in draft state.</value>
   </data>
+  <data name="Product.Modification.NotAllowedForDiscontinued" xml:space="preserve">
+    <value>Product '{0}' cannot be modified because it is discontinued.</value>
+  </data>
 </root>

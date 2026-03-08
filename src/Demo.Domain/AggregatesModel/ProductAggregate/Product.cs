@@ -21,6 +21,17 @@ public class Product : AuditableEntity, IAggregateRoot
         Price = price;
     }
 
+    public void UpdateDetails(string name, string? description)
+    {
+        if (Status == ProductStatus.Discontinued)
+        {
+            throw new DomainException(ProductErrors.ModificationNotAllowedForDiscontinued(Id));
+        }
+
+        Name = name;
+        Description = description;
+    }
+
     public void Activate()
     {
         if (Status == ProductStatus.Discontinued)

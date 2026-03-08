@@ -7,7 +7,9 @@ namespace Demo.Application.UseCases.Products.Commands.DiscontinueProduct;
 public class DiscontinueProductCommandHandler(IApplicationDbContext context)
     : ICommandHandler<DiscontinueProductCommand, Result>
 {
-    public async ValueTask<Result> Handle(DiscontinueProductCommand command, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(
+        DiscontinueProductCommand command,
+        CancellationToken cancellationToken)
     {
         var product = await context.Products
             .FirstOrDefaultAsync(p => p.Id == command.ProductId, cancellationToken);

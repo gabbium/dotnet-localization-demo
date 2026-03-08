@@ -192,4 +192,7 @@
   <data name="Product.Delete.NotAllowedForNonDraft" xml:space="preserve">
     <value>O produto '{0}' não pode ser excluído porque não está em estado de rascunho.</value>
   </data>
+  <data name="Product.Modification.NotAllowedForDiscontinued" xml:space="preserve">
+    <value>O produto '{0}' não pode ser modificado porque está descontinuado.</value>
+  </data>
 </root>

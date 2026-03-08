@@ -9,7 +9,7 @@ public class LocalizationHeaderTransformer : IOpenApiDocumentTransformer
     {
         foreach (var path in document.Paths.Values)
         {
-            if (path.Operations is null)
+            if (path.Operations == null)
             {
                 continue;
             }

@@ -28,6 +28,9 @@ public static class ProductErrors
     public static Error CurrencyMustBeIsoCode() =>
         new("Product.Currency.MustBeIsoCode");
 
+    public static Error ModificationNotAllowedForDiscontinued(Guid id) =>
+        new("Product.Modification.NotAllowedForDiscontinued", id);
+
     public static Error ActivationNotAllowedForDiscontinued(Guid id) =>
         new("Product.Activation.NotAllowedForDiscontinued", id);
 

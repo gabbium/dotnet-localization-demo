@@ -7,7 +7,9 @@ namespace Demo.Application.UseCases.Products.Commands.DeleteProduct;
 public class DeleteProductCommandHandler(IApplicationDbContext context)
     : ICommandHandler<DeleteProductCommand, Result>
 {
-    public async ValueTask<Result> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(
+        DeleteProductCommand command,
+        CancellationToken cancellationToken)
     {
         var product = await context.Products
             .FirstOrDefaultAsync(p => p.Id == command.ProductId, cancellationToken);

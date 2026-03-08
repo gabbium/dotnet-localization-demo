@@ -192,4 +192,7 @@
   <data name="Product.Delete.NotAllowedForNonDraft" xml:space="preserve">
     <value>El producto '{0}' no puede eliminarse porque no está en estado borrador.</value>
   </data>
+  <data name="Product.Modification.NotAllowedForDiscontinued" xml:space="preserve">
+    <value>El producto '{0}' no puede modificarse porque está descontinuado.</value>
+  </data>
 </root>
