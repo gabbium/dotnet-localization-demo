@@ -45,7 +45,7 @@ public class DefaultExceptionHandler : IExceptionHandler
             title: _localizer[ProblemDetailsErrors.ServerFailureTitle().Code],
             detail: _localizer[ProblemDetailsErrors.ServerFailureDetail().Code],
             statusCode: StatusCodes.Status500InternalServerError,
-            type: "https://www.rfc-editor.org/rfc/rfc9110#section-15.6.1");
+            type: "https://tools.ietf.org/html/rfc9110#section-15.6.1");
 
         await problem.ExecuteAsync(httpContext);
 
@@ -77,7 +77,7 @@ public class DefaultExceptionHandler : IExceptionHandler
             detail: _localizer[ProblemDetailsErrors.ValidationDetail().Code],
             errors: errors,
             statusCode: StatusCodes.Status400BadRequest,
-            type: "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.1");
+            type: "https://tools.ietf.org/html/rfc9110#section-15.5.1");
 
         await problem.ExecuteAsync(httpContext);
     }
@@ -92,7 +92,7 @@ public class DefaultExceptionHandler : IExceptionHandler
             title: _localizer[ProblemDetailsErrors.UnprocessableTitle().Code],
             detail: _localizer[exception.Error.Code, exception.Error.Arguments],
             statusCode: StatusCodes.Status422UnprocessableEntity,
-            type: "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.21");
+            type: "https://tools.ietf.org/html/rfc4918#section-11.2");
 
         await problem.ExecuteAsync(httpContext);
     }
