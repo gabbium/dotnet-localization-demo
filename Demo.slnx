@@ -16,5 +16,10 @@
     <Project Path="src/Demo.ServiceDefaults/Demo.ServiceDefaults.csproj" />
     <Project Path="src/Demo.SharedKernel/Demo.SharedKernel.csproj" Id="f76b2097-0f15-4ae4-8c4a-9f9b60ba54cb" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/Demo.Api.AcceptanceTests/Demo.Api.AcceptanceTests.csproj" Id="a5a6ca06-1ed0-4c73-9cb2-9b207714d5a7" />
+    <Project Path="tests/Demo.Application.FunctionalTests/Demo.Application.FunctionalTests.csproj" Id="e650411c-d5c2-4e98-8226-8fcded626ccf" />
+    <Project Path="tests/Demo.Domain.UnitTests/Demo.Domain.UnitTests.csproj" Id="9786de47-de4f-494b-a3b9-141a28577ccf" />
+    <Project Path="tests/Demo.Infrastructure.IntegrationTests/Demo.Infrastructure.IntegrationTests.csproj" Id="fa5a6209-6d25-4ef9-a51d-82c196fc73c9" />
+  </Folder>
 </Solution>

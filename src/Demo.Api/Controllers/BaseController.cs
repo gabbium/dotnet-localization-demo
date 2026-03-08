@@ -125,14 +125,14 @@ public abstract class BaseController(IStringLocalizer<SharedResource> localizer)
         if (result.Errors.Count == 1)
         {
             var error = result.Errors[0];
-            return localizer[error.Code, error.Arguments];
+            return localizer[error.Code, error.Parameters];
         }
 
         var sb = new StringBuilder();
 
         foreach (var error in result.Errors)
         {
-            sb.AppendLine().Append("* ").Append(localizer[error.Code, error.Arguments]);
+            sb.AppendLine().Append("* ").Append(localizer[error.Code, error.Parameters]);
         }
 
         return sb.ToString();

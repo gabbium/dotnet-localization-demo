@@ -66,7 +66,7 @@ public class DefaultExceptionHandler : IExceptionHandler
                 {
                     if (e.CustomState is Error error)
                     {
-                        return _localizer[error.Code, error.Arguments].Value;
+                        return _localizer[error.Code, error.Parameters].Value;
                     }
 
                     return _localizer[e.ErrorCode].Value;
@@ -90,7 +90,7 @@ public class DefaultExceptionHandler : IExceptionHandler
 
         var problem = Results.Problem(
             title: _localizer[ProblemDetailsErrors.UnprocessableTitle().Code],
-            detail: _localizer[exception.Error.Code, exception.Error.Arguments],
+            detail: _localizer[exception.Error.Code, exception.Error.Parameters],
             statusCode: StatusCodes.Status422UnprocessableEntity,
             type: "https://tools.ietf.org/html/rfc4918#section-11.2");
 
