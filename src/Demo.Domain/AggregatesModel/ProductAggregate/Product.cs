@@ -35,4 +35,19 @@ public class Product : AuditableEntity, IAggregateRoot
 
         Status = ProductStatus.Active;
     }
+
+    public void Discontinue()
+    {
+        if (Status == ProductStatus.Draft)
+        {
+            throw new DomainException(ProductErrors.DiscontinueNotAllowedForDraft(Id));
+        }
+
+        if (Status == ProductStatus.Discontinued)
+        {
+            return;
+        }
+
+        Status = ProductStatus.Discontinued;
+    }
 }

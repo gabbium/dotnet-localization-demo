@@ -4,6 +4,7 @@ using Demo.Application.Models;
 using Demo.Application.UseCases.Products.Commands.ActivateProduct;
 using Demo.Application.UseCases.Products.Commands.CreateProduct;
 using Demo.Application.UseCases.Products.Commands.DeleteProduct;
+using Demo.Application.UseCases.Products.Commands.DiscontinueProduct;
 using Demo.Application.UseCases.Products.Queries.GetProductById;
 using Demo.Application.UseCases.Products.Queries.ListProducts;
 using Demo.SharedKernel.Pagination;
@@ -95,6 +96,28 @@ public class ProductsController(
         CancellationToken cancellationToken)
     {
         var command = new ActivateProductCommand(id);
+
+        var result = await mediator.Send(command, cancellationToken);
+
+        return ToActionResult(result);
+    }
+
+    /// <summary>
+    /// Discontinue product
+    /// </summary>
+    /// <remarks>
+    /// Marks the specified product as discontinued.
+    /// </remarks>
+    [HttpPut("{id:guid}/discontinue")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DiscontinueProduct(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        var command = new DiscontinueProductCommand(id);
 
         var result = await mediator.Send(command, cancellationToken);
 

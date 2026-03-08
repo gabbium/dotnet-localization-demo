@@ -30,4 +30,10 @@ public static class ProductErrors
 
     public static Error ActivationNotAllowedForDiscontinued(Guid id) =>
         new("Product.Activation.NotAllowedForDiscontinued", id);
+
+    public static Error DiscontinueNotAllowedForDraft(Guid id) =>
+        new("Product.Discontinue.NotAllowedForDraft", id);
+
+    public static Error DeleteNotAllowedForNonDraft(Guid id) =>
+        new("Product.Delete.NotAllowedForNonDraft", id);
 }

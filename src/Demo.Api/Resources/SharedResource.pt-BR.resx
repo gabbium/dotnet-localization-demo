@@ -186,4 +186,10 @@
   <data name="Product.Activation.NotAllowedForDiscontinued" xml:space="preserve">
     <value>O produto '{0}' não pode ser ativado porque está descontinuado.</value>
   </data>
+  <data name="Product.Discontinue.NotAllowedForDraft" xml:space="preserve">
+    <value>O produto '{0}' não pode ser descontinuado porque ainda não foi ativado.</value>
+  </data>
+  <data name="Product.Delete.NotAllowedForNonDraft" xml:space="preserve">
+    <value>O produto '{0}' não pode ser excluído porque não está em estado de rascunho.</value>
+  </data>
 </root>
