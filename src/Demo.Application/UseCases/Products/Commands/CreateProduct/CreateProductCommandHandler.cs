@@ -35,7 +35,7 @@ public class CreateProductCommandHandler(IApplicationDbContext context)
             LastModifiedAt = product.LastModifiedAt
         };
 
-        return Result.Created(response, $"/api/v1/products/{product.Id}"); 
+        return Result.Created(response, $"/api/v1/products/{product.Id}");
     }
 }
 
