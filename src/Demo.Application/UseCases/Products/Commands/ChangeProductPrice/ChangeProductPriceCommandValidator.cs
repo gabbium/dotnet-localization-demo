@@ -15,9 +15,10 @@ public class ChangeProductPriceCommandValidator : AbstractValidator<ChangeProduc
             .WithState(_ => ProductErrors.PriceMustBeGreaterThan(0));
 
         RuleFor(x => x.Currency)
+            .Cascade(CascadeMode.Stop)
             .NotEmpty()
-                .WithState(_ => ProductErrors.CurrencyRequired())
+            .WithState(_ => ProductErrors.CurrencyRequired())
             .Length(3)
-                .WithState(_ => ProductErrors.CurrencyMustBeIsoCode());
+            .WithState(_ => ProductErrors.CurrencyMustBeIsoCode());
     }
 }

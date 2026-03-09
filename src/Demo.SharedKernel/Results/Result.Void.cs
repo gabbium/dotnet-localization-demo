@@ -10,15 +10,9 @@ public class Result : Result<Result>
     {
     }
 
-    public static Result Success()
-    {
-        return new();
-    }
+    public static Result Success() => new();
 
-    public static Result<T> Created<T>(T value, string location)
-    {
-        return Result<T>.Created(value, location);
-    }
+    public static Result<T> Created<T>(T value, string location) => Result<T>.Created(value, location);
 
     public new static Result Error(params Error[] errors)
     {
@@ -84,8 +78,5 @@ public class Result : Result<Result>
         };
     }
 
-    public new static Result NoContent()
-    {
-        return new(ResultStatus.NoContent);
-    }
+    public new static Result NoContent() => new(ResultStatus.NoContent);
 }

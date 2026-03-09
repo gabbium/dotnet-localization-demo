@@ -25,10 +25,7 @@ public class Result<T> : IResult
         Status = ResultStatus.Ok;
     }
 
-    public static Result<T> Success(T value)
-    {
-        return new(value);
-    }
+    public static Result<T> Success(T value) => new(value);
 
     public static Result<T> Created(T value, string location)
     {
@@ -103,10 +100,7 @@ public class Result<T> : IResult
         };
     }
 
-    public static Result<T> NoContent()
-    {
-        return new(ResultStatus.NoContent);
-    }
+    public static Result<T> NoContent() => new(ResultStatus.NoContent);
 
     public static implicit operator T(Result<T> result)
     {

@@ -1,0 +1,9 @@
+global using FluentValidation;
+global using Mediator;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Npgsql;
+global using Respawn;
+global using Shouldly;
+global using Testcontainers.PostgreSql;
